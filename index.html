@@ -19,12 +19,11 @@
 </head>
 <body>
 
-  <!-- Side Bar -->
   <div class="flex">
     <div class="w-1/5 bg-white h-screen">
-      <div class="h-full">
-        <div class="border-8 border-white rounded-xl overflow-hidden h-full">
-          <div class="bg-blue-600 h-full rounded-xl">
+      <div class="h-screen">
+        <div class="border border-[16px] border-gray-100 rounded-xl overflow-hidden h-full">
+          <div class="bg-blue-600 h-full rounded-xl shadow-xl">
             <div class="p-4">
               <div class="flex flex-col">
                 <div class="bg-blue-600 p-3 rounded flex items-center mb-2 ml-3">
@@ -78,7 +77,7 @@
       </div>
     </div>
 
-    <div class="flex-grow">
+    <div class="flex-grow bg-gray-100">
       <div class="flex items-center justify-left pt-16 pl-48 font-bold">
         <p class="text-blue-800 text-4xl">
           Personal Information<br>
@@ -93,14 +92,16 @@
             Name
           </label>
           <input 
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+            class="shadow appearance-none border rounded w-96 py-2 px-3 text-lg text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50
+            transition duration-300 ease-in-out transform hover:scale-105" 
             id="name" type="text" placeholder="Name">
           <div class="pt-8">
             <label class="block text-blue-700 text-sm font-bold mb-2" for="name">
               Email
             </label>
             <input 
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-lg text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50
+              transition duration-300 ease-in-out transform hover:scale-105" 
               id="name" type="text" placeholder="Email">
           </div>
           <div class="pt-8">
@@ -108,9 +109,15 @@
               Phone Number
             </label>
             <input 
-              class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+              class="shadow appearance-none border rounded w-full py-2 px-3 text-lg text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50
+              transition duration-300 ease-in-out transform hover:scale-105" 
               id="name" type="text" placeholder="Phone Number">
           </div>
+          <div class="pt-16">
+            <button class="float-right shadow-md rounded bg-blue-600 text-white px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-700">
+              Next
+            </button>
+          </div>          
         </form>
       </div>
     </div>
@@ -121,5 +128,6 @@
       Coded by <a href="#">Shallon Frances</a>.
     </div>
   </div>
+
 </body>
 </html>
