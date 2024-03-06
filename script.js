@@ -1,4 +1,46 @@
-const formData = [];
+formData = [{
+    bill : 0,
+    toggle : null
+}];
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    // Checkbox
+    const checkboxes = document.querySelectorAll('input[type="radio"]');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                checkboxes.forEach(otherCheckbox => {
+                    if (otherCheckbox !== this) {
+                        otherCheckbox.parentElement.querySelector('.checkbox').classList.remove('border-blue-500');
+                    }
+                });
+                if (this.checked) {
+                    this.parentElement.querySelector('.checkbox').classList.add('border-blue-500');
+                } else {
+                    this.parentElement.querySelector('.checkbox').classList.remove('border-blue-500');
+                }
+            });
+        });
+
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const checkboxDiv = this.parentElement.querySelector('.checkbox');
+            if (this.checked) {
+                checkboxDiv.classList.add('border-blue-500');
+            } else {
+                checkboxDiv.classList.remove('border-blue-500');
+            }
+        });
+    });
+});
+
 
 document.addEventListener("DOMContentLoaded", function() {
     // DOM content has loaded, you can now safely access and manipulate the DOM
@@ -9,15 +51,53 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('#emailRequired').style.display = 'none';
     document.querySelector('#phoneRequired').style.display = 'none';
 
+    // Step 2 id's
+    document.querySelector('#planRequired').style.display = 'none';
+
     // Step displays
     document.querySelector('#step1Form').style.display = 'block';
     document.querySelector('#step2Form').style.display = 'none';
+    document.querySelector('#step3Form').style.display = 'none';
+    document.querySelector('#step4Form').style.display = 'none';
     
     // Check for button clicks
     document.querySelector('#step1btn').addEventListener('click', (e) => {
         e.preventDefault(); 
         next_step();
     });
+    document.querySelector('#step2btn').addEventListener('click', (e) => {
+        e.preventDefault(); 
+        next_step_2();
+    });
+    document.querySelector('#step3btn').addEventListener('click', (e) => {
+        e.preventDefault(); 
+        next_step_3();
+    });
+
+    // Change plan
+    document.querySelector('#change').addEventListener('click', (e) => {
+        e.preventDefault();
+
+        document.querySelector('#step4Form').style.display = 'none';
+        document.querySelector('#step2Form').style.display = 'block';
+
+        document.getElementById('toggleBtn').checked = false;
+        document.querySelectorAll('input[name="checkbox"]').forEach(checkbox => {
+            checkbox.checked = false;
+            checkbox.parentElement.querySelector('.checkbox').classList.remove('border-blue-500');
+        });
+        document.querySelectorAll('input[type="radio"]').forEach(checkbox => {
+            checkbox.checked = false;
+            checkbox.parentElement.querySelector('.checkbox').classList.remove('border-blue-500');
+        });
+
+        document.getElementById('onlineInfo').classList.add('hidden');
+        document.getElementById('storageInfo').classList.add('hidden');
+        document.getElementById('profileInfo').classList.add('hidden');
+
+        formData[0].bill = 0;
+        formData[0].toggle = null;
+    })
 
 });
 
@@ -46,6 +126,7 @@ function validateInput(inputId) {
 
 
 function next_step() {
+
     console.log("next_step");
 
     // Get values from inputs
@@ -59,20 +140,149 @@ function next_step() {
     const valid_phone  = validateInput('phone');
 
     if (valid_name && valid_email && valid_phone) {
-     
-        // Create an object to represent the form data
-        const formDataItem = {
-            name: name_element,
-            email: email_element,
-            phone: phone_element
-        };
-
-        // Push the form data object into the global array
-        formData.push(formDataItem);
-
-        console.log("Form data:", formData);
 
         document.querySelector('#step1Form').style.display = 'none';
         document.querySelector('#step2Form').style.display = 'block';
     }
+}
+
+
+function next_step_2() {
+    console.log("next_step_2");
+
+    // Reset bill
+    formData[0].bill = 0;
+
+    // Get all radio buttons with the name "checkbox"
+    const radioButtons = document.querySelectorAll('input[name="checkbox"]');
+    const toggleButton = document.getElementById("toggleBtn");
+
+    let checkedId = null;
+
+    // Iterate over each radio button
+    radioButtons.forEach(function(radioButton) {
+        // Check if the current radio button is checked
+        if (radioButton.checked) {
+            // If checked, store its value
+            checkedId = radioButton.id;
+        }
+    });
+
+    // Assign bill based on checkedId
+    if (checkedId === 'arcade') {
+        bill = 9;
+    } else if (checkedId === 'advanced') {
+        bill = 12;
+    } else if (checkedId === 'pro') {
+        bill = 15;
+    }
+
+    if (toggleButton.checked) {
+        toggle = 'Yearly';
+        bill *= 12
+        billStr = `+$${bill}/yr`;
+    } else {
+        toggle = 'Monthly';
+        billStr = `+$${bill}/mo`;
+    }
+
+    if (checkedId) {
+        const capitalizedId = checkedId.charAt(0).toUpperCase() + checkedId.slice(1);
+
+        // Update the text content of the span inside #plantext
+        document.querySelector('#plantext').innerHTML = 
+            `${capitalizedId} (${toggle}) <span class="ml-[250px] font-bold text-sm">${billStr}</span>`;
+
+
+        document.querySelector('#step2Form').style.display = 'none';
+        document.querySelector('#step3Form').style.display = 'block';
+        document.querySelector('#planRequired').style.display = 'none';
+    } else {
+        document.querySelector('#planRequired').style.display = 'block';
+
+        document.getElementById('arcadeDiv').classList.add("border-red-500", "focus:ring-red-500");
+        document.getElementById('advancedDiv').classList.add("border-red-500", "focus:ring-red-500");
+        document.getElementById('proDiv').classList.add("border-red-500", "focus:ring-red-500");
+
+        // Remove the classes after 3 seconds
+        setTimeout(function() {
+            document.getElementById('arcadeDiv').classList.remove("border-red-500", "focus:ring-red-500");
+            document.getElementById('advancedDiv').classList.remove("border-red-500", "focus:ring-red-500");
+            document.getElementById('proDiv').classList.remove("border-red-500", "focus:ring-red-500");
+        }, 1500); 
+    }
+
+    formData[0].bill = bill;
+    formData[0].toggle = toggle;
+
+    console.log('Bill: ', formData[0].bill);
+}
+
+
+function next_step_3() {
+    // Get all checkboxes with the name "checkbox" (step 3 checkboxes)
+    const checkButtons = document.querySelectorAll('input[name="checkbox"]');
+    
+    let ids = [];
+
+    // Iterate over each checkbox
+    checkButtons.forEach(function(checkButton) {
+        // Check if the current checkbox is checked
+        if (checkButton.checked) {
+            // If checked, store its ID
+            ids.push(checkButton.id);      
+        }
+    });
+
+    // Filter id's
+    ids = ids.filter(id => id.includes("online") || id.includes("profile") || id.includes("storage"));
+
+    console.log(ids);
+
+    // Check if we should uncover the info
+    ids.forEach(id => {
+        if (id.includes("online")) {
+            document.getElementById('onlineInfo').classList.remove('hidden');
+            
+            if (formData[0].toggle === 'Yearly') {
+                formData[0].bill += 12;
+            }
+            else {
+                formData[0].bill++;
+            }
+        }
+        else if (id.includes("storage")) {
+            document.getElementById('storageInfo').classList.remove('hidden');
+    
+            if (formData[0].toggle === 'Yearly') {
+                formData[0].bill += 24;
+            }
+            else {
+                formData[0].bill += 2;
+            }
+        }
+        else if (id.includes("profile")) {
+            document.getElementById('profileInfo').classList.remove('hidden');
+    
+            if (formData[0].toggle === 'Yearly') {
+                formData[0].bill += 24;
+            }
+            else {
+                formData[0].bill += 2;
+            }
+        }
+    });
+    
+
+    if (formData[0].toggle === 'Yearly') {
+        totalUnit = '/yr';
+    } else {
+        totalUnit = '/mo'
+    }
+
+    document.querySelector('#total span').innerHTML = 
+        `+$${formData[0].bill.toString()+totalUnit}`;
+
+    document.querySelector('#step3Form').style.display = 'none';
+    document.querySelector('#step4Form').style.display = 'block';
 }

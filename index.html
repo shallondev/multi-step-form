@@ -132,10 +132,11 @@
 
         <!-- Step 2-->
         <form id="step2Form">
-          <div class="flex items-center justify-center relative">
+            <p class="text-red-500 mb-2 flex items-center justify-center relative" id="planRequired" style="margin: 0 auto; text-align: center;">This Field is Required</p>
+            <div class="flex items-center justify-center relative">
               <label class="checkbox-container">
-                <input type="radio" name="checkbox" class="hidden" />
-                <div class="relative border-2 border-white bg-white px-[60px] py-[80px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer hover:border-blue-500 focus:outline-none focus:shadow-outline focus:border-blue-500">
+                <input id='arcade' type="radio" name="checkbox" class="hidden" />
+                <div id="arcadeDiv" class="relative border-2 border-white bg-white px-[60px] py-[80px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer hover:border-blue-500 focus:outline-none focus:shadow-outline focus:border-blue-500">
                     <div class="absolute top-3 left-3 transform">
                       <img src="assets/images/icon-arcade.svg" alt="Arcade Icon">
                     </div>
@@ -144,10 +145,10 @@
                       <p class="text-gray-400">$9/mo</p>
                     </div>
                 </div>
-             </label>
+              </label>
               <label class="checkbox-container ml-8">
-                  <input type="radio" name="checkbox" class="hidden" />
-                  <div class="border-2 border-white bg-white px-[60px] py-[80px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer 
+                  <input id='advanced' type="radio" name="checkbox" class="hidden" />
+                  <div id="advancedDiv" class="border-2 border-white bg-white px-[60px] py-[80px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer 
                       hover:border-blue-500 focus:outline-none focus:shadow-outline focus:border-blue-500">
                       <div class="absolute top-3 left-3 transform">
                         <img src="assets/images/icon-advanced.svg" alt="Advanced Icon">
@@ -159,8 +160,8 @@
                   </div>
               </label>
               <label class="checkbox-container ml-8">
-                  <input type="radio" name="checkbox" class="hidden" />
-                  <div class="border-2 border-white bg-white px-[60px] py-[80px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer 
+                  <input id='pro' type="radio" name="checkbox" class="hidden" />
+                  <div id="proDiv" class="border-2 border-white bg-white px-[60px] py-[80px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer 
                       hover:border-blue-500 focus:outline-none focus:shadow-outline focus:border-blue-500">
                       <div class="absolute top-3 left-3 transform">
                         <img src="assets/images/icon-pro.svg" alt="Pro Icon">
@@ -175,13 +176,13 @@
           <div class="mt-8 flex items-center justify-center">
               <label class="inline-flex items-center cursor-pointer">
                   <span class="mr-3 text-sm font-medium text-gray-900 dark:text-gray-300">Monthly</span>
-                  <input type="checkbox" value="" class="sr-only peer">
+                  <input id="toggleBtn" type="checkbox" value="on" class="sr-only peer">
                   <div class="relative w-11 h-6 bg-blue-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                   <span class="ml-3 mr-1 text-sm font-medium text-gray-900 dark:text-gray-300">Yearly</span>
               </label>
           </div>
           <div class="pt-16 flex items-center justify-between">
-              <button id="step2btn" class="shadow-md rounded bg-white text-blue-800 px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-900">
+              <button id="stepback2Btn" class="shadow-md rounded bg-white text-blue-800 px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-900">
                   Go Back
               </button>
               <button id="step2btn" class="shadow-md rounded bg-blue-800 text-white px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-900">
@@ -189,10 +190,99 @@
               </button>
           </div>
         </form>
-      
+
+        <!-- Step 3 -->
+        <form id="step3Form">
+          <label class="checkbox-container">
+              <input id='online' type="checkbox" name="checkbox" class="hidden" />
+              <div id="onlineDiv1" class="relative border-2 border-white bg-white px-[220px] py-[40px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer hover:border-blue-500 focus:outline-none focus:shadow-outline focus:border-blue-500">
+                  <div class="absolute top-8 right-7 transform">
+                      <p class="text-sm text-blue-400">+$1/mo</p>
+                  </div>
+                  <div class="absolute bottom-3 left-7 transform">
+                      <p class="text-lg text-blue-800">Online Services</p>
+                      <p class="text-gray-400">Access to Multiplayer Games</p>
+                  </div>
+              </div>
+          </label>
+          <div class="mt-4"></div>
+          <label class="checkbox-container">
+              <input id='storage' type="checkbox" name="checkbox" class="hidden" />
+              <div id="storageDiv" class="relative border-2 border-white bg-white px-[220px] py-[40px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer hover:border-blue-500 focus:outline-none focus:shadow-outline focus:border-blue-500">
+                  <div class="absolute top-8 right-7 transform">
+                      <p class="text-sm text-blue-400">+$2/mo</p>
+                  </div>
+                  <div class="absolute bottom-3 left-7 transform">
+                      <p class="text-lg text-blue-800">Larger Storage</p>
+                      <p class="text-gray-400">Extra 1TB of Cloud Storage</p>
+                  </div>
+              </div>
+          </label>
+          <div class="mt-4"></div>
+          <label class="checkbox-container">
+              <input id='profile' type="checkbox" name="checkbox" class="hidden" />
+              <div id="profileDiv" class="relative border-2 border-white bg-white px-[220px] py-[40px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer hover:border-blue-500 focus:outline-none focus:shadow-outline focus:border-blue-500">
+                  <div class="absolute top-8 right-7 transform">
+                      <p class="text-sm text-blue-400">+$2/mo</p>
+                  </div>
+                  <div class="absolute bottom-3 left-7 transform">
+                      <p class="text-lg text-blue-800">Customizable Profile</p>
+                      <p class="text-gray-400">Custom Theme on your Profile</p>
+                  </div>
+              </div>
+          </label>
+          <div class="pt-16 flex items-center justify-between">
+            <button id="stepback3Btn" class="shadow-md rounded bg-white text-blue-800 px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-900">
+                Go Back
+            </button>
+            <button id="step3btn" class="shadow-md rounded bg-blue-800 text-white px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-900">
+                Next
+            </button>
+          </div>
+        </form>
+
+        <form id="step4Form">
+          <p id="plantext" class="text-lg text-blue-800 font-bold">
+            <span class="ml-[300px] font-bold text-sm">
+            </span>
+          </p>
+          <a id="change" class="text-blue-800 hover:underline hover:cursor-pointer">Change</a>
+          <div class="mt-8"></div>
+          <p id="onlineInfo" class="text-gray-400 hidden">
+            Online Services
+            <span class="ml-64 font-bold text-sm">
+              +$1/mo
+            </span>
+          </p>
+          <p id="storageInfo" class="text-gray-400 hidden">
+            Larger Storage
+            <span class="ml-64 font-bold text-sm">
+              +$2/mo
+            </span>
+          </p>
+          <p id="profileInfo" class="text-gray-400 hidden">
+            Custom Profile
+            <span class="ml-64 font-bold text-sm">
+              +$2/mo
+            </span>
+          </p>
+          <p id="total" class="text-gray-400">
+            Total
+            <span class="ml-64 font-bold text-sm">
+            </span>
+          </p>
+          <div class="pt-16 flex items-center justify-between">
+            <button id="stepbackBtn" class="shadow-md rounded bg-white text-blue-800 px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-900">
+                Go Back
+            </button>
+            <button id="step4btn" class="shadow-md rounded bg-blue-800 text-white px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-900">
+                Confirm
+            </button>
+          </div>
+        </form>
+
       </div>
     </div>
-
   
   <!-- Footer -->
   <div class="fixed bottom-0 left-0 w-full">
