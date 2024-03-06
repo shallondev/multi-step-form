@@ -1,8 +1,13 @@
 formData = [{
     bill : 0,
-    toggle : null
+    billInit : 0,
+    toggle : null,
+    name : '',
+    email : '',
+    phone : '',
 }];
 
+// Step 3 Radio Buttons
 document.addEventListener("DOMContentLoaded", function() {
 
     // Checkbox
@@ -25,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-
+// Step 4 Checkboxes
 document.addEventListener("DOMContentLoaded", function() {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
@@ -59,6 +64,13 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('#step2Form').style.display = 'none';
     document.querySelector('#step3Form').style.display = 'none';
     document.querySelector('#step4Form').style.display = 'none';
+    document.querySelector('#step5Form').style.display = 'none';
+
+    // Header Display
+    document.querySelector('#step1Header').style.display = 'block';
+    document.querySelector('#step2Header').style.display = 'none';
+    document.querySelector('#step3Header').style.display = 'none';
+    document.querySelector('#step4Header').style.display = 'none';
     
     // Check for button clicks
     document.querySelector('#step1btn').addEventListener('click', (e) => {
@@ -73,36 +85,97 @@ document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault(); 
         next_step_3();
     });
+    document.querySelector('#step4btn').addEventListener('click', (e) => {
+        e.preventDefault(); 
+        next_step_4();
+    });
+
+    // Go back buttons
+    document.querySelector('#stepback2Btn').addEventListener('click', (e) => {
+        e.preventDefault();
+        go_back();
+    });
+    document.querySelector('#stepback3Btn').addEventListener('click', (e) => {
+        e.preventDefault();
+        go_back_2();
+    });
+    document.querySelector('#stepback4Btn').addEventListener('click', (e) => {
+        e.preventDefault();
+        go_back_3();
+    });
 
     // Change plan
     document.querySelector('#change').addEventListener('click', (e) => {
         e.preventDefault();
-
-        document.querySelector('#step4Form').style.display = 'none';
-        document.querySelector('#step2Form').style.display = 'block';
-
-        document.getElementById('toggleBtn').checked = false;
-        document.querySelectorAll('input[name="checkbox"]').forEach(checkbox => {
-            checkbox.checked = false;
-            checkbox.parentElement.querySelector('.checkbox').classList.remove('border-blue-500');
-        });
-        document.querySelectorAll('input[type="radio"]').forEach(checkbox => {
-            checkbox.checked = false;
-            checkbox.parentElement.querySelector('.checkbox').classList.remove('border-blue-500');
-        });
-
-        document.getElementById('onlineInfo').classList.add('hidden');
-        document.getElementById('storageInfo').classList.add('hidden');
-        document.getElementById('profileInfo').classList.add('hidden');
-
-        formData[0].bill = 0;
-        formData[0].toggle = null;
+        change_plan();
     })
 
 });
 
 
-// Validate information
+function go_back() {
+    document.querySelector('#step1Form').style.display = 'block';
+    document.querySelector('#step2Form').style.display = 'none';
+
+    document.querySelector('#step1Header').style.display = 'block';
+    document.querySelector('#step2Header').style.display = 'none';
+}
+
+
+function go_back_2() {
+    document.querySelector('#step2Form').style.display = 'block';
+    document.querySelector('#step3Form').style.display = 'none';
+
+    document.querySelector('#step2Header').style.display = 'block';
+    document.querySelector('#step3Header').style.display = 'none';
+
+    document.getElementById('toggleBtn').checked = false;
+
+    formData[0].bill = 0;
+    formData[0].toggle = null;
+}
+
+function go_back_3() {
+    document.querySelector('#step3Form').style.display = 'block';
+    document.querySelector('#step4Form').style.display = 'none';
+
+    document.querySelector('#step3Header').style.display = 'block';
+    document.querySelector('#step4Header').style.display = 'none';
+
+    document.getElementById('onlineInfo').classList.add('hidden');
+    document.getElementById('storageInfo').classList.add('hidden');
+    document.getElementById('profileInfo').classList.add('hidden');
+
+    formData[0].bill = formData[0].billInit;
+}
+
+
+function change_plan() {
+    document.querySelector('#step4Form').style.display = 'none';
+    document.querySelector('#step2Form').style.display = 'block';
+
+    document.querySelector('#step4Header').style.display = 'none';
+    document.querySelector('#step2Header').style.display = 'block';
+
+    document.getElementById('toggleBtn').checked = false;
+    document.querySelectorAll('input[name="checkbox"]').forEach(checkbox => {
+        checkbox.checked = false;
+        checkbox.parentElement.querySelector('.checkbox').classList.remove('border-blue-500');
+    });
+    document.querySelectorAll('input[type="radio"]').forEach(checkbox => {
+        checkbox.checked = false;
+        checkbox.parentElement.querySelector('.checkbox').classList.remove('border-blue-500');
+    });
+
+    document.getElementById('onlineInfo').classList.add('hidden');
+    document.getElementById('storageInfo').classList.add('hidden');
+    document.getElementById('profileInfo').classList.add('hidden');
+
+    formData[0].bill = 0;
+    formData[0].toggle = null;
+}
+
+
 function validateInput(inputId) {
     const inputElement = document.getElementById(inputId);
     const inputValue = inputElement.value.trim();
@@ -141,8 +214,15 @@ function next_step() {
 
     if (valid_name && valid_email && valid_phone) {
 
+        formData[0].name = name_element
+        formData[0].email = email_element
+        formData[0].phone = phone_element
+
         document.querySelector('#step1Form').style.display = 'none';
         document.querySelector('#step2Form').style.display = 'block';
+
+        document.querySelector('#step1Header').style.display = 'none';
+        document.querySelector('#step2Header').style.display = 'block';
     }
 }
 
@@ -152,6 +232,7 @@ function next_step_2() {
 
     // Reset bill
     formData[0].bill = 0;
+    formData[0].billInit = 0;
 
     // Get all radio buttons with the name "checkbox"
     const radioButtons = document.querySelectorAll('input[name="checkbox"]');
@@ -197,6 +278,9 @@ function next_step_2() {
         document.querySelector('#step2Form').style.display = 'none';
         document.querySelector('#step3Form').style.display = 'block';
         document.querySelector('#planRequired').style.display = 'none';
+
+        document.querySelector('#step2Header').style.display = 'none';
+        document.querySelector('#step3Header').style.display = 'block';
     } else {
         document.querySelector('#planRequired').style.display = 'block';
 
@@ -213,6 +297,7 @@ function next_step_2() {
     }
 
     formData[0].bill = bill;
+    formData[0].billInit = bill;
     formData[0].toggle = toggle;
 
     console.log('Bill: ', formData[0].bill);
@@ -285,4 +370,15 @@ function next_step_3() {
 
     document.querySelector('#step3Form').style.display = 'none';
     document.querySelector('#step4Form').style.display = 'block';
+
+    document.querySelector('#step3Header').style.display = 'none';
+    document.querySelector('#step4Header').style.display = 'block';
+}
+
+
+function next_step_4() {
+    document.querySelector('#step4Form').style.display = 'none';
+    document.querySelector('#step5Form').style.display = 'block';
+
+    document.querySelector('#step4Header').style.display = 'none';
 }
