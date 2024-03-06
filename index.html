@@ -23,16 +23,18 @@
 </head>
 <body>
 
-  <div class="flex">
-    <div class="w-1/5 bg-white h-screen">
-      <div class="h-screen">
-        <div class="border border-[16px] border-gray-100 rounded-xl overflow-hidden h-full">
+    <div class="flex justify-center items-center min-h-screen bg-white">
+    <div class="container mx-auto px-4">
+    <div class="flex justify-center items-stretch relative">
+    <div class="bg-white flex flex-col justify-between">
+      <div class="h-full">
+        <div class="border border-[16px] border-blue-100 overflow-hidden h-full">
           <div class="bg-blue-600 h-full rounded-xl shadow-xl">
-            <div class="p-4">
+            <div class="p-4 mr-4">
               <div class="flex flex-col">
                 <div class="bg-blue-600 p-3 rounded flex items-center mb-2 ml-3">
-                  <div class="rounded-full h-12 w-12 bg-blue-200">
-                    <p class="text-blue-700 text-3xl flex items-center justify-center w-full h-full">
+                  <div id="infoBackground" class="rounded-full h-12 w-12 bg-blue-200 border-2 border-blue-600">
+                    <p id="infoInnerText" class="text-blue-600 text-3xl flex items-center justify-center w-full h-full">
                       1
                     </p>
                   </div>
@@ -42,8 +44,8 @@
                   </div>
                 </div>
                 <div class="bg-blue-600 p-3 rounded flex items-center mb-2 ml-3">
-                  <div class="rounded-full h-12 w-12 bg-blue-200">
-                    <p class="text-blue-700 text-3xl flex items-center justify-center w-full h-full">
+                  <div id="planBackground" class="rounded-full h-12 w-12 bg-blue-600 border-2 border-white">
+                    <p id="planInnerText" class="text-white text-3xl flex items-center justify-center w-full h-full">
                       2
                     </p>
                   </div>
@@ -53,8 +55,8 @@
                   </div>
                 </div>
                 <div class="bg-blue-600 p-3 rounded flex items-center mb-2 ml-3">
-                  <div class="rounded-full h-12 w-12 bg-blue-200">
-                    <p class="text-blue-700 text-3xl flex items-center justify-center w-full h-full">
+                  <div id="addBackground" class="rounded-full h-12 w-12 bg-blue-200  bg-blue-600 border-2 border-white">
+                    <p id="addInnerText" class="text-white text-3xl flex items-center justify-center w-full h-full">
                       3
                     </p>
                   </div>
@@ -64,8 +66,8 @@
                   </div>
                 </div>
                 <div class="bg-blue-600 p-3 rounded flex items-center ml-3">
-                  <div class="rounded-full h-12 w-12 bg-blue-200">
-                    <p class="text-blue-700 text-3xl flex items-center justify-center w-full h-full">
+                  <div id="sumBackground" class="rounded-full h-12 w-12  bg-blue-600 border-2 border-white">
+                    <p id="sumInnerText" class="text-white text-3xl flex items-center justify-center w-full h-full">
                       4
                     </p>
                   </div>
@@ -82,8 +84,8 @@
     </div>
 
     <!-- Steps -->
-    <div class="flex-grow bg-gray-100">
-      <div class="flex items-center justify-left pt-16 pl-48 font-bold">
+    <div class="flex-grow bg-blue-100 relative">
+      <div class="flex items-center justify-center pt-16 font-bold">
         <p id="step1Header" class="text-blue-800 text-4xl">
           Personal Information<br>
           <span class="text-lg text-gray-400">
@@ -109,7 +111,8 @@
           </span>
         </p>
       </div>
-      <div class="flex items-center justify-left pt-16 pl-48">
+
+      <div class="flex items-center justify-center pt-16 font-bold">
 
         <!-- Step 1 -->
         <form id="step1Form">
@@ -124,6 +127,7 @@
           <div class="pt-8">
             <label class="block text-blue-700 text-sm font-bold mb-2" for="email">
               Email
+              <span class="float-right text-red-500" id="emailInvalid">Incorrect Format</span>
               <span class="float-right text-red-500" id="emailRequired">This Field is Required</span>
             </label>
             <input id="email"
@@ -142,7 +146,7 @@
               id="name" type="text" placeholder="Phone Number">
           </div>
           <div class="pt-16">
-            <button id="step1btn" class="float-right shadow-md rounded bg-blue-800 text-white px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-900">
+            <button id="step1btn" class="mb-4 float-right shadow-md rounded bg-blue-800 text-white px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-900">
               Next
             </button>
           </div>          
@@ -153,7 +157,7 @@
             <p class="text-red-500 mb-2 flex items-center justify-center relative" id="planRequired" style="margin: 0 auto; text-align: center;">This Field is Required</p>
             <div class="flex items-center justify-center relative">
               <label class="checkbox-container">
-                <input id='arcade' type="radio" name="checkbox" class="hidden" />
+                <input id='arcade' type="radio" name="radiocheckbox" class="hidden" />
                 <div id="arcadeDiv" class="relative border-2 border-white bg-white px-[60px] py-[80px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer hover:border-blue-500 focus:outline-none focus:shadow-outline focus:border-blue-500">
                     <div class="absolute top-3 left-3 transform">
                       <img src="assets/images/icon-arcade.svg" alt="Arcade Icon">
@@ -165,7 +169,7 @@
                 </div>
               </label>
               <label class="checkbox-container ml-8">
-                  <input id='advanced' type="radio" name="checkbox" class="hidden" />
+                  <input id='advanced' type="radio" name="radiocheckbox" class="hidden" />
                   <div id="advancedDiv" class="border-2 border-white bg-white px-[60px] py-[80px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer 
                       hover:border-blue-500 focus:outline-none focus:shadow-outline focus:border-blue-500">
                       <div class="absolute top-3 left-3 transform">
@@ -178,7 +182,7 @@
                   </div>
               </label>
               <label class="checkbox-container ml-8">
-                  <input id='pro' type="radio" name="checkbox" class="hidden" />
+                  <input id='pro' type="radio" name="radiocheckbox" class="hidden" />
                   <div id="proDiv" class="border-2 border-white bg-white px-[60px] py-[80px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer 
                       hover:border-blue-500 focus:outline-none focus:shadow-outline focus:border-blue-500">
                       <div class="absolute top-3 left-3 transform">
@@ -203,7 +207,7 @@
               <button id="stepback2Btn" class="shadow-md rounded bg-white text-blue-800 px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-900">
                   Go Back
               </button>
-              <button id="step2btn" class="shadow-md rounded bg-blue-800 text-white px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-900">
+              <button id="step2btn" class="mb-4 shadow-md rounded bg-blue-800 text-white px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-900">
                   Next
               </button>
           </div>
@@ -215,7 +219,8 @@
               <input id='online' type="checkbox" name="checkbox" class="hidden" />
               <div id="onlineDiv1" class="relative border-2 border-white bg-white px-[220px] py-[40px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer hover:border-blue-500 focus:outline-none focus:shadow-outline focus:border-blue-500">
                   <div class="absolute top-8 right-7 transform">
-                      <p class="text-sm text-blue-400">+$1/mo</p>
+                      <p id="onlineTrans1" class="text-sm text-blue-400">+$1/mo</p>
+                      <p id="onlineTrans2" class="text-sm text-blue-400 hidden">+$12/yr</p>
                   </div>
                   <div class="absolute bottom-3 left-7 transform">
                       <p class="text-lg text-blue-800">Online Services</p>
@@ -228,7 +233,8 @@
               <input id='storage' type="checkbox" name="checkbox" class="hidden" />
               <div id="storageDiv" class="relative border-2 border-white bg-white px-[220px] py-[40px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer hover:border-blue-500 focus:outline-none focus:shadow-outline focus:border-blue-500">
                   <div class="absolute top-8 right-7 transform">
-                      <p class="text-sm text-blue-400">+$2/mo</p>
+                      <p id="storageTrans1" class="text-sm text-blue-400">+$2/mo</p>
+                      <p id="storageTrans2" class="text-sm text-blue-400 hidden">+$24/yr</p>
                   </div>
                   <div class="absolute bottom-3 left-7 transform">
                       <p class="text-lg text-blue-800">Larger Storage</p>
@@ -241,7 +247,8 @@
               <input id='profile' type="checkbox" name="checkbox" class="hidden" />
               <div id="profileDiv" class="relative border-2 border-white bg-white px-[220px] py-[40px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer hover:border-blue-500 focus:outline-none focus:shadow-outline focus:border-blue-500">
                   <div class="absolute top-8 right-7 transform">
-                      <p class="text-sm text-blue-400">+$2/mo</p>
+                      <p id="profileTrans1" class="text-sm text-blue-400">+$2/mo</p>
+                      <p id="profileTrans2" class="text-sm text-blue-400 hidden">+$24/yr</p>
                   </div>
                   <div class="absolute bottom-3 left-7 transform">
                       <p class="text-lg text-blue-800">Customizable Profile</p>
@@ -253,12 +260,13 @@
             <button id="stepback3Btn" class="shadow-md rounded bg-white text-blue-800 px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-900">
                 Go Back
             </button>
-            <button id="step3btn" class="shadow-md rounded bg-blue-800 text-white px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-900">
+            <button id="step3btn" class="mb-4 shadow-md rounded bg-blue-800 text-white px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-900">
                 Next
             </button>
           </div>
         </form>
 
+        <!-- Step 4 -->
         <form id="step4Form">
           <p id="plantext" class="text-lg text-blue-800 font-bold">
             <span class="ml-[300px] font-bold text-sm">
@@ -266,25 +274,34 @@
           </p>
           <a id="change" class="text-blue-800 hover:underline hover:cursor-pointer">Change</a>
           <div class="mt-8"></div>
-          <p id="onlineInfo" class="text-gray-400 hidden">
+          <p id="onlineInfo" class="text-gray-400 hidden flex justify-between">
             Online Services
-            <span class="ml-64 font-bold text-sm">
+            <span id="onlineSpan1" class="ml-64 font-bold text-sm hidden">
               +$1/mo
             </span>
+            <span id="onlineSpan2" class="ml-64 font-bold text-sm hidden">
+              +$12/yr
+            </span>
           </p>
-          <p id="storageInfo" class="text-gray-400 hidden">
+          <p id="storageInfo" class="text-gray-400 hidden flex justify-between">
             Larger Storage
-            <span class="ml-64 font-bold text-sm">
+            <span id="storageSpan1" class="ml-64 font-bold text-sm hidden">
               +$2/mo
             </span>
+            <span id="storageSpan2" class="ml-64 font-bold text-sm hidden">
+              +$24/yr
+            </span>
           </p>
-          <p id="profileInfo" class="text-gray-400 hidden">
+          <p id="profileInfo" class="text-gray-400 hidden flex justify-between">
             Custom Profile
-            <span class="ml-64 font-bold text-sm">
+            <span id="profileSpan1" class="ml-64 font-bold text-sm hidden">
               +$2/mo
             </span>
+            <span id="profileSpan2" class="ml-64 font-bold text-sm hidden">
+              +$24/yr
+            </span>
           </p>
-          <p id="total" class="text-gray-400">
+          <p id="total" class="text-gray-400 flex justify-between">
             Total
             <span class="ml-64 font-bold text-sm">
             </span>
@@ -293,18 +310,19 @@
             <button id="stepback4Btn" class="shadow-md rounded bg-white text-blue-800 px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-900">
                 Go Back
             </button>
-            <button id="step4btn" class="shadow-md rounded bg-blue-800 text-white px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-900">
+            <button id="step4btn" class="mb-4 shadow-md rounded bg-blue-800 text-white px-6 py-3 font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:bg-blue-900">
                 Confirm
             </button>
           </div>
         </form>
 
+        <!-- Step 5 -->
         <form id="step5Form" class="flex flex-col items-center">
           <div class="flex items-center justify-center">
               <img src="assets/images/icon-thank-you.svg" alt="Thank You Icon" class="w-16 h-16">
           </div>
-          <p class="text-blue-800 font-semibold text-4xl text-center">Thank You!</p>
-          <p class="text-gray-400 font-semibold text-lg text-center">
+          <p class="mt-8 text-blue-800 font-semibold text-4xl text-center">Thank You!</p>
+          <p class="mt-4 text-gray-400 font-semibold text-lg text-center mb-48">
               Thanks for confirming your subscription!<br>
               We hope you have fun using our platform. 
               <br> If you ever need support, <br> please feel free 
@@ -314,6 +332,8 @@
        
 
       </div>
+    </div>
+    </div>
     </div>
   
   <!-- Footer -->

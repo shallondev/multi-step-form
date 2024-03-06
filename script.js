@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('#nameRequired').style.display = 'none';
     document.querySelector('#emailRequired').style.display = 'none';
     document.querySelector('#phoneRequired').style.display = 'none';
+    document.getElementById('emailInvalid').style.display = 'none';
 
     // Step 2 id's
     document.querySelector('#planRequired').style.display = 'none';
@@ -119,6 +120,18 @@ function go_back() {
 
     document.querySelector('#step1Header').style.display = 'block';
     document.querySelector('#step2Header').style.display = 'none';
+
+    document.getElementById('infoBackground').classList.add("bg-blue-200", "border-blue-600");
+    document.getElementById('infoBackground').classList.remove("border-white");
+
+    document.getElementById('infoInnerText').classList.add('text-blue-600');
+    document.getElementById('infoInnerText').classList.remove('text-white');
+
+    document.getElementById('planBackground').classList.add("border-white", "bg-blue-600");
+    document.getElementById('planBackground').classList.remove("bg-blue-200", "border-blue-600");
+
+    document.getElementById('planInnerText').classList.add('text-white');
+    document.getElementById('planInnerText').classList.remove('text-blue-600');
 }
 
 
@@ -133,6 +146,18 @@ function go_back_2() {
 
     formData[0].bill = 0;
     formData[0].toggle = null;
+
+    document.getElementById('planBackground').classList.add("bg-blue-200", "border-blue-600");
+    document.getElementById('planBackground').classList.remove("border-white");
+
+    document.getElementById('planInnerText').classList.add('text-blue-600');
+    document.getElementById('planInnerText').classList.remove('text-white');
+
+    document.getElementById('addBackground').classList.add("border-white", "bg-blue-600");
+    document.getElementById('addBackground').classList.remove("bg-blue-200", "border-blue-600");
+
+    document.getElementById('addInnerText').classList.add('text-white');
+    document.getElementById('addInnerText').classList.remove('text-blue-600');
 }
 
 function go_back_3() {
@@ -145,8 +170,26 @@ function go_back_3() {
     document.getElementById('onlineInfo').classList.add('hidden');
     document.getElementById('storageInfo').classList.add('hidden');
     document.getElementById('profileInfo').classList.add('hidden');
+    document.getElementById('onlineSpan1').classList.add('hidden');
+    document.getElementById('onlineSpan2').classList.add('hidden');
+    document.getElementById('storageSpan1').classList.add('hidden');
+    document.getElementById('storageSpan2').classList.add('hidden');
+    document.getElementById('profileSpan1').classList.add('hidden');
+    document.getElementById('profileSpan2').classList.add('hidden');
 
     formData[0].bill = formData[0].billInit;
+
+    document.getElementById('addBackground').classList.add("bg-blue-200", "border-blue-600");
+    document.getElementById('addBackground').classList.remove("border-white");
+
+    document.getElementById('addInnerText').classList.add('text-blue-600');
+    document.getElementById('addInnerText').classList.remove('text-white');
+
+    document.getElementById('sumBackground').classList.add("border-white", "bg-blue-600");
+    document.getElementById('sumBackground').classList.remove("bg-blue-200", "border-blue-600");
+
+    document.getElementById('sumInnerText').classList.add('text-white');
+    document.getElementById('sumInnerText').classList.remove('text-blue-600');
 }
 
 
@@ -157,22 +200,34 @@ function change_plan() {
     document.querySelector('#step4Header').style.display = 'none';
     document.querySelector('#step2Header').style.display = 'block';
 
-    document.getElementById('toggleBtn').checked = false;
-    document.querySelectorAll('input[name="checkbox"]').forEach(checkbox => {
-        checkbox.checked = false;
-        checkbox.parentElement.querySelector('.checkbox').classList.remove('border-blue-500');
-    });
-    document.querySelectorAll('input[type="radio"]').forEach(checkbox => {
-        checkbox.checked = false;
-        checkbox.parentElement.querySelector('.checkbox').classList.remove('border-blue-500');
-    });
+    formData[0].bill = formData[0].billInit;
+    formData[0].bill = 0;
+    formData[0].toggle = null;
 
     document.getElementById('onlineInfo').classList.add('hidden');
     document.getElementById('storageInfo').classList.add('hidden');
     document.getElementById('profileInfo').classList.add('hidden');
+    document.getElementById('onlineSpan1').classList.add('hidden');
+    document.getElementById('onlineSpan2').classList.add('hidden');
+    document.getElementById('storageSpan1').classList.add('hidden');
+    document.getElementById('storageSpan2').classList.add('hidden');
+    document.getElementById('profileSpan1').classList.add('hidden');
+    document.getElementById('profileSpan2').classList.add('hidden');
 
     formData[0].bill = 0;
     formData[0].toggle = null;
+
+    document.getElementById('planBackground').classList.add("bg-blue-200", "border-blue-600");
+    document.getElementById('planBackground').classList.remove("border-white");
+
+    document.getElementById('planInnerText').classList.add('text-blue-600');
+    document.getElementById('planInnerText').classList.remove('text-white');
+
+    document.getElementById('sumBackground').classList.add("border-white", "bg-blue-600");
+    document.getElementById('sumBackground').classList.remove("bg-blue-200", "border-blue-600");
+
+    document.getElementById('sumInnerText').classList.add('text-white');
+    document.getElementById('sumInnerText').classList.remove('text-blue-600');
 }
 
 
@@ -180,6 +235,9 @@ function validateInput(inputId) {
     const inputElement = document.getElementById(inputId);
     const inputValue = inputElement.value.trim();
     const errorMessageElement = document.getElementById(inputId + "Required");
+    const errorMessageEmailElement = document.getElementById('emailInvalid');
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
     // Manipulate elements to reflect empty information
     if (!inputValue) {
@@ -189,6 +247,16 @@ function validateInput(inputId) {
 
         return false;
     } 
+
+    if (!emailRegex.test(inputValue) && inputId === 'email') {
+        errorMessageEmailElement.style.display = 'block';
+        inputElement.classList.add("border-red-500", "focus:ring-red-500");
+        inputElement.classList.remove("focus:ring-blue-500");
+
+        return false;
+    } else if (emailRegex.test(inputValue) && inputId === 'email') {
+        errorMessageEmailElement.style.display = 'none';
+    }
 
     errorMessageElement.style.display = 'none';
     inputElement.classList.add("focus:ring-blue-500");
@@ -214,6 +282,7 @@ function next_step() {
 
     if (valid_name && valid_email && valid_phone) {
 
+
         formData[0].name = name_element
         formData[0].email = email_element
         formData[0].phone = phone_element
@@ -223,6 +292,18 @@ function next_step() {
 
         document.querySelector('#step1Header').style.display = 'none';
         document.querySelector('#step2Header').style.display = 'block';
+
+        document.getElementById('infoBackground').classList.remove("bg-blue-200", "border-blue-600");
+        document.getElementById('infoBackground').classList.add("border-white");
+
+        document.getElementById('infoInnerText').classList.remove('text-blue-600');
+        document.getElementById('infoInnerText').classList.add('text-white');
+
+        document.getElementById('planBackground').classList.remove("border-white", "bg-blue-600");
+        document.getElementById('planBackground').classList.add("bg-blue-200", "border-blue-600");
+
+        document.getElementById('planInnerText').classList.remove('text-white');
+        document.getElementById('planInnerText').classList.add('text-blue-600');
     }
 }
 
@@ -233,9 +314,10 @@ function next_step_2() {
     // Reset bill
     formData[0].bill = 0;
     formData[0].billInit = 0;
+    let bill = 0;
 
     // Get all radio buttons with the name "checkbox"
-    const radioButtons = document.querySelectorAll('input[name="checkbox"]');
+    const radioButtons = document.querySelectorAll('input[name="radiocheckbox"]');
     const toggleButton = document.getElementById("toggleBtn");
 
     let checkedId = null;
@@ -249,6 +331,8 @@ function next_step_2() {
         }
     });
 
+    console.log("checkedId:", checkedId); // Debug statement
+
     // Assign bill based on checkedId
     if (checkedId === 'arcade') {
         bill = 9;
@@ -257,6 +341,8 @@ function next_step_2() {
     } else if (checkedId === 'pro') {
         bill = 15;
     }
+
+    console.log("bill:", bill); // Debug statement
 
     if (toggleButton.checked) {
         toggle = 'Yearly';
@@ -267,13 +353,34 @@ function next_step_2() {
         billStr = `+$${bill}/mo`;
     }
 
-    if (checkedId) {
+    console.log("toggle:", toggle); // Debug statement
+    console.log("billStr:", billStr); // Debug statement
+
+    if (checkedId !== null) {
+        console.log("we are in if");
+
         const capitalizedId = checkedId.charAt(0).toUpperCase() + checkedId.slice(1);
 
         // Update the text content of the span inside #plantext
         document.querySelector('#plantext').innerHTML = 
             `${capitalizedId} (${toggle}) <span class="ml-[250px] font-bold text-sm">${billStr}</span>`;
 
+        if (toggle === 'Yearly') {
+            document.getElementById('onlineTrans1').classList.add('hidden');
+            document.getElementById('onlineTrans2').classList.remove('hidden');
+            document.getElementById('storageTrans1').classList.add('hidden');
+            document.getElementById('storageTrans2').classList.remove('hidden');
+            document.getElementById('profileTrans1').classList.add('hidden');
+            document.getElementById('profileTrans2').classList.remove('hidden');
+        }
+        else {
+            document.getElementById('onlineTrans1').classList.remove('hidden');
+            document.getElementById('onlineTrans2').classList.add('hidden');
+            document.getElementById('storageTrans1').classList.remove('hidden');
+            document.getElementById('storageTrans2').classList.add('hidden');
+            document.getElementById('profileTrans1').classList.remove('hidden');
+            document.getElementById('profileTrans2').classList.add('hidden');
+        }
 
         document.querySelector('#step2Form').style.display = 'none';
         document.querySelector('#step3Form').style.display = 'block';
@@ -281,7 +388,23 @@ function next_step_2() {
 
         document.querySelector('#step2Header').style.display = 'none';
         document.querySelector('#step3Header').style.display = 'block';
-    } else {
+
+        document.getElementById('planBackground').classList.remove("bg-blue-200", "border-blue-600");
+        document.getElementById('planBackground').classList.add("border-white");
+
+        document.getElementById('planInnerText').classList.remove('text-blue-600');
+        document.getElementById('planInnerText').classList.add('text-white');
+
+        document.getElementById('addBackground').classList.remove("border-white", "bg-blue-600");
+        document.getElementById('addBackground').classList.add("bg-blue-200", "border-blue-600");
+
+        document.getElementById('addInnerText').classList.remove('text-white');
+        document.getElementById('addInnerText').classList.add('text-blue-600');
+    } 
+    
+    if (checkedId === null) {
+        console.log("we are in else");
+
         document.querySelector('#planRequired').style.display = 'block';
 
         document.getElementById('arcadeDiv').classList.add("border-red-500", "focus:ring-red-500");
@@ -331,9 +454,11 @@ function next_step_3() {
             
             if (formData[0].toggle === 'Yearly') {
                 formData[0].bill += 12;
+                document.getElementById('onlineSpan2').classList.remove('hidden');
             }
             else {
                 formData[0].bill++;
+                document.getElementById('onlineSpan1').classList.remove('hidden');
             }
         }
         else if (id.includes("storage")) {
@@ -341,9 +466,11 @@ function next_step_3() {
     
             if (formData[0].toggle === 'Yearly') {
                 formData[0].bill += 24;
+                document.getElementById('storageSpan2').classList.remove('hidden');
             }
             else {
                 formData[0].bill += 2;
+                document.getElementById('storageSpan1').classList.remove('hidden');
             }
         }
         else if (id.includes("profile")) {
@@ -351,9 +478,11 @@ function next_step_3() {
     
             if (formData[0].toggle === 'Yearly') {
                 formData[0].bill += 24;
+                document.getElementById('profileSpan2').classList.remove('hidden');
             }
             else {
                 formData[0].bill += 2;
+                document.getElementById('profileSpan1').classList.remove('hidden');
             }
         }
     });
@@ -373,6 +502,18 @@ function next_step_3() {
 
     document.querySelector('#step3Header').style.display = 'none';
     document.querySelector('#step4Header').style.display = 'block';
+
+    document.getElementById('addBackground').classList.remove("bg-blue-200", "border-blue-600");
+    document.getElementById('addBackground').classList.add("border-white");
+
+    document.getElementById('addInnerText').classList.remove('text-blue-600');
+    document.getElementById('addInnerText').classList.add('text-white');
+
+    document.getElementById('sumBackground').classList.remove("border-white", "bg-blue-600");
+    document.getElementById('sumBackground').classList.add("bg-blue-200", "border-blue-600");
+
+    document.getElementById('sumInnerText').classList.remove('text-white');
+    document.getElementById('sumInnerText').classList.add('text-blue-600');
 }
 
 
