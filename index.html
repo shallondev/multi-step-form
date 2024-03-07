@@ -24,7 +24,7 @@
 <body>
 
   <div class="flex justify-center items-center md:min-h-screen bg-white">
-    <div class="container mx-auto px-1 bg-blue-100">
+    <div class="container mx-auto bg-blue-100">
       <div class="md:flex justify-center items-stretch relative">
       <div class="bg-white flex flex-col justify-between">
         <div class="h-full">
@@ -155,8 +155,8 @@
           <!-- Step 2-->
           <form id="step2Form">
               <p class="text-red-500 mb-2 flex items-center justify-center relative" id="planRequired" style="margin: 0 auto; text-align: center;">This Field is Required</p>
-              <div class="flex items-center justify-center relative">
-                <label class="checkbox-container">
+              <div class="flex flex-col items-center justify-center relative sm:flex-row">
+                <label class="checkbox-container mb-4 sm:mb-0 sm:mr-4">
                   <input id='arcade' type="radio" name="radiocheckbox" class="hidden" />
                   <div id="arcadeDiv" class="relative border-2 border-white bg-white px-16 py-[80px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer hover:border-blue-500 focus:outline-none focus:shadow-outline focus:border-blue-500">
                       <div class="absolute top-3 left-3 transform">
@@ -168,7 +168,7 @@
                       </div>
                   </div>
                 </label>
-                <label class="checkbox-container ml-8">
+                <label class="checkbox-container mb-4 sm:mb-0 sm:mr-4">
                     <input id='advanced' type="radio" name="radiocheckbox" class="hidden" />
                     <div id="advancedDiv" class="border-2 border-white bg-white px-16 py-[80px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer 
                         hover:border-blue-500 focus:outline-none focus:shadow-outline focus:border-blue-500">
@@ -181,7 +181,7 @@
                         </div>
                     </div>
                 </label>
-                <label class="checkbox-container ml-8">
+                <label class="checkbox-container mb-4 sm:mb-0 sm:mr-4">
                     <input id='pro' type="radio" name="radiocheckbox" class="hidden" />
                     <div id="proDiv" class="border-2 border-white bg-white px-16 py-[80px] font-semibold rounded-lg shadow-xl transition duration-300 ease-in-out transform hover:scale-105 checkbox cursor-pointer 
                         hover:border-blue-500 focus:outline-none focus:shadow-outline focus:border-blue-500">
