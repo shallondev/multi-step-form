@@ -32,4 +32,4 @@ It is easy just go to: https://multi-form-shallon.netlify.app/
 - Twitter: @shallondev
 
 ## Acknowledgements
-This project was insipred by Frontend Mentor and uses REST Countries API. 
+This project was a challenge by Frontend Mentor. 
